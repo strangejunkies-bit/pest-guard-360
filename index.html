@@ -798,6 +798,7 @@ footer {
   justify-content: center;
   z-index: 500;
   padding: 1.25rem;
+  overflow-y: auto;
   transition: opacity 0.25s ease;
 }
 
@@ -811,6 +812,8 @@ footer {
   border-radius: 18px;
   max-width: 29rem;
   width: 100%;
+  max-height: calc(100vh - 2.5rem);
+  overflow-y: auto;
   padding: 2.6rem 2.1rem 2.1rem;
   text-align: center;
   position: relative;
@@ -981,6 +984,34 @@ footer {
 
   .footer-top {
     grid-template-columns: 1fr 1fr;
+    padding: 3rem 0 2.25rem;
+  }
+
+  .services,
+  .split-feature,
+  .why-us {
+    padding: 3rem 0;
+  }
+
+  .section-intro {
+    margin-bottom: 2rem;
+  }
+
+  .why-us-list {
+    margin-top: 2rem;
+    gap: 1.25rem;
+  }
+
+  .why-us-card {
+    padding: 1.5rem 1.5rem 1.75rem;
+  }
+
+  .why-us-number {
+    margin-bottom: 1rem;
+  }
+
+  .cta-inner {
+    padding: 2.5rem 0;
   }
 }
 
@@ -1006,6 +1037,35 @@ footer {
 
   .hero-btn {
     width: 100%;
+  }
+}
+
+@media (max-height: 700px) {
+  .modal {
+    padding: 1.75rem 1.75rem 1.5rem;
+  }
+
+  .modal-stop-logo {
+    max-width: 170px;
+    margin: 0 auto 0.75rem;
+  }
+
+  .modal-brand-logo {
+    max-width: 130px;
+    margin: 0 auto 0.75rem;
+  }
+
+  .modal-family {
+    font-size: 24px;
+    margin-top: -4px;
+  }
+
+  .modal-copy {
+    margin-top: 0.85rem;
+  }
+
+  .modal-continue {
+    margin-top: 1.1rem;
   }
 }
 
