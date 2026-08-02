@@ -3,6 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* ===================================================
+   ===== FLUID RESPONSIVE ENGINE (SAMSUNG S22 FIX) =====
+   =================================================== */
+@media (max-width: 768px) {
+  .header-row, .hero-layout, .service-grid, .property-service, .about-list, .contact-banner__content, .footer-grid, .form-row {
+    flex-direction: column !important;
+    display: flex !important;
+    align-items: stretch !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+  }
+  .brand {
+    align-self: center !important;
+    margin: 0 auto !important;
+  }
+  .brand img {
+    width: 8rem !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+  h1 {
+    font-size: 1.8rem !important;
+    text-align: center !important;
+  }
+  .service-card, .footer-column, .property-service__image, .property-service__content {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+</style>
+
   <title>Pest Guard 360 | Residential & Commercial Pest Control in Michigan</title>
   <meta name="description" content="Pest Guard 360 delivers local home pest control and commercial pest management across Michigan — one standard, total protection.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
