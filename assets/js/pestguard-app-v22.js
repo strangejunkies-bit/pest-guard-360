@@ -99,7 +99,7 @@ if (quoteForm) {
     } catch (error) {
       if (formStatus) {
         formStatus.className = 'form-status is-error';
-        formStatus.textContent = 'The request was not sent. Check your connection and try again, or email strangejunkies@gmail.com.';
+        formStatus.textContent = 'The request was not sent. Check your connection and try again, or email team@pestguard360.com.';
       }
       console.error('Quote form error:', error);
     } finally {
