@@ -49,34 +49,55 @@ document.querySelectorAll('[data-service]').forEach((link) => {
 });
 
 if (quoteForm) {
-  quoteForm.addEventListener('submit', (event) => {
+  quoteForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     if (!quoteForm.reportValidity()) return;
 
+    const submitButton = quoteForm.querySelector('button[type="submit"]');
     const formData = new FormData(quoteForm);
-    const name = String(formData.get('name') || '').trim();
     const email = String(formData.get('email') || '').trim();
-    const phone = String(formData.get('phone') || '').trim();
-    const service = String(formData.get('service') || 'Not sure yet').trim();
-    const message = String(formData.get('message') || '').trim();
 
-    const subject = `Quote request from ${name}`;
-    const body = [
-      `Name: ${name}`,
-      `Email: ${email}`,
-      `Phone: ${phone}`,
-      `Service: ${service || 'Not sure yet'}`,
-      '',
-      'Details:',
-      message || 'No additional details provided.'
-    ].join('\n');
+    formData.set('_replyto', email);
+    formData.set('_subject', `New Pest Guard 360 quote request from ${String(formData.get('name') || '').trim()}`);
 
-    if (formStatus) {
-      formStatus.textContent = 'Opening your email app. Review the message and press send.';
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
     }
 
-    window.location.href = `mailto:team@pestguard360.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    if (formStatus) {
+      formStatus.textContent = 'Sending your request...';
+    }
+
+    try {
+      const response = await fetch(quoteForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Form submission failed');
+      }
+
+      quoteForm.reset();
+
+      if (formStatus) {
+        formStatus.textContent = 'Thank you. Your request was sent successfully.';
+      }
+    } catch {
+      if (formStatus) {
+        formStatus.textContent = 'Your request could not be sent. Please call 1-855-3-PESTGUARD or email team@pestguard360.com.';
+      }
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send Quote Request';
+      }
+    }
   });
 }
 
